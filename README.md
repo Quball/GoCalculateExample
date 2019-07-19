@@ -10,6 +10,11 @@ An example service to show calculation of numbers with Golang, AWS Lambda and AW
 
 `$ aws lambda update-function-code --function-name calculateProxy --zip-file fileb://function.zip`
 
+## Test calculate package
+
+from the `test/` folder run
+`$ go test`
+
 ## Test endpoint in Postman
 
 POST `https://jcgpzw51yg.execute-api.eu-north-1.amazonaws.com/beta/calculateresource`
@@ -18,9 +23,19 @@ Request Body
 
 ```
 {
-	"number_a": "13",
-	"number_b": "42"
+	"number_a": 1,
+	"number_b": 2,
+	"operation": "SUBTRACT"
 }
 ```
 
-Result: "Calculate number 13 with 42"
+Result
+```
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "result": -1
+}
+```
