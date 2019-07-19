@@ -10,9 +10,9 @@ import (
 )
 
 type request struct {
-	NumberA   int    `json:"number_a"`
-	NumberB   int    `json:"number_b"`
-	Operation string `json:"operation"`
+	NumberA   float32 `json:"number_a"`
+	NumberB   float32 `json:"number_b"`
+	Operation string  `json:"operation"`
 }
 
 type response struct {
