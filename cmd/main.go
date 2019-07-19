@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"errors"
-	"fmt"
 
 	"./calculate"
 
@@ -16,13 +15,25 @@ type request struct {
 	Operation string `json:"operation"`
 }
 
+type response struct {
+	StatusCode int               `json:"statusCode"`
+	Headers    map[string]string `json:"headers"`
+	Result     float32           `json:"result"`
+}
+
 // HandleRequest returns operation for calculate or error
-func HandleRequest(ctx context.Context, name request) (string, error) {
+func HandleRequest(ctx context.Context, name request) (response, error) {
 	result, err := calculate.Calculate(name.NumberA, name.NumberB, name.Operation)
 	if err != nil {
-		return "", errors.New(`Math operation is not recognized`)
+		return response{},
+			errors.New(`Math operation is not recognized`)
 	}
-	return fmt.Sprintf("%s (%d, %d) = %f", name.Operation, name.NumberA, name.NumberB, result), nil
+	return response{
+			StatusCode: 200,
+			Headers:    map[string]string{"Content-Type": "application/json"},
+			Result:     result,
+		},
+		nil
 }
 
 func main() {

@@ -3,7 +3,7 @@ package calculate
 import "errors"
 
 // Calculate returns the calculated result requested
-func Calculate(a int, b int, operation string) (result float64, err error) {
+func Calculate(a int, b int, operation string) (result float32, err error) {
 
 	switch operation {
 	case "ADD":
@@ -20,18 +20,18 @@ func Calculate(a int, b int, operation string) (result float64, err error) {
 	return result, nil
 }
 
-func add(a int, b int) float64 {
-	return float64(a) + float64(b)
+func add(a int, b int) float32 {
+	return float32(a) + float32(b)
 }
 
-func subtract(a int, b int) float64 {
-	return float64(a) - float64(b)
+func subtract(a int, b int) float32 {
+	return float32(a) - float32(b)
 }
 
-func multiply(a int, b int) float64 {
-	return float64(a) * float64(b)
+func multiply(a int, b int) float32 {
+	return float32(a) * float32(b)
 }
 
-func divide(a int, b int) float64 {
-	return float64(a) / float64(b)
+func divide(a int, b int) float32 {
+	return float32(a) / float32(b)
 }
